@@ -30,13 +30,53 @@ header{display:flex;justify-content:space-between;align-items:center;padding:1.5
 button{margin-top:10px;padding:0.6rem 1rem;border:none;border-radius:10px;background:#6366f1;color:white;cursor:pointer;transition:0.3s;} 
 button:hover{background:#4f46e5;}
 
-.auth{position:fixed;top:0;left:0;width:100%;height:100%;display:none;justify-content:center;align-items:center;background:rgba(0,0,0,0.6);backdrop-filter:blur(6px);} 
+.auth{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(6px);
+  z-index:1000;
+}
 
-.auth-box{background:white;padding:2rem;border-radius:16px;width:320px;position:relative;animation:popIn 0.4s ease;} 
-.auth-box h3{text-align:center;margin-bottom:1rem;} 
-.auth-box input{width:100%;margin:8px 0;padding:0.7rem;border-radius:8px;border:1px solid #ddd;} 
+.auth-box{
+  background:white;
+  padding:2rem;
+  border-radius:16px;
+  width:90%;
+  max-width:340px;
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  animation:popIn 0.3s ease;
+}
 
-.close-btn{position:absolute;top:10px;right:12px;background:none;border:none;font-size:18px;cursor:pointer;} 
+.close-btn{
+  position:absolute;
+  top:12px;
+  right:12px;
+  background:none;
+  border:none;
+  font-size:20px;
+  cursor:pointer;
+}
+
+.auth-box input{
+  width:100%;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #ddd;
+}
+
+.auth-box button{
+  width:100%;
+}
 
 .badge{display:inline-block;padding:4px 8px;border-radius:6px;font-size:12px;margin-top:5px;} 
 .available{background:#d1fae5;color:#065f46;} 
