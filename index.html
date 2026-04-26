@@ -1,203 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CampusNest</title>
-  <style>
-    :root {
-      --primary: #4f46e5;
-      --bg: #f9fafb;
-      --text: #1f2937;
-      --card: #ffffff;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CampusNest</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Segoe UI', sans-serif;
-    }
+<style>
+:root{
+--primary:#6366f1;
+--bg:#f9fafb;
+--text:#111827;
+}
 
-    body {
-      background: var(--bg);
-      color: var(--text);
-    }
+body{margin:0;font-family:'Poppins',sans-serif;background:var(--bg);} 
 
-    header {
-      padding: 2rem;
-      text-align: center;
-    }
+header{display:flex;justify-content:space-between;padding:1.5rem 2rem;background:white;box-shadow:0 5px 15px rgba(0,0,0,0.05);} 
+.logo{font-weight:600;color:var(--primary);font-size:1.4rem;} 
 
-    header h1 {
-      font-size: 2.5rem;
-      color: var(--primary);
-    }
+.hero{text-align:center;padding:2rem;} 
+.hero h2{margin-bottom:10px;} 
+input{padding:0.8rem;border-radius:8px;border:1px solid #ddd;width:80%;max-width:400px;} 
 
-    header p {
-      margin-top: 0.5rem;
-      color: #6b7280;
-    }
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;padding:2rem;} 
 
-    .search-bar {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      padding: 1rem;
-      flex-wrap: wrap;
-    }
+.card{background:white;padding:1.5rem;border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,0.05);transition:0.3s;} 
+.card:hover{transform:translateY(-6px);} 
 
-    input, select {
-      padding: 0.8rem;
-      border-radius: 8px;
-      border: 1px solid #ddd;
-      min-width: 200px;
-    }
+.tag{background:#eef2ff;padding:4px 8px;border-radius:6px;margin:2px;display:inline-block;font-size:12px;} 
 
-    .filters {
-      display: flex;
-      justify-content: center;
-      gap: 1rem;
-      padding: 1rem;
-      flex-wrap: wrap;
-    }
+.rating{color:#f59e0b;font-weight:600;} 
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 1.5rem;
-      padding: 2rem;
-    }
+button{margin-top:10px;padding:0.6rem 1rem;border:none;border-radius:8px;background:var(--primary);color:white;cursor:pointer;} 
 
-    .card {
-      background: var(--card);
-      border-radius: 16px;
-      padding: 1.5rem;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
+.auth{position:fixed;top:0;left:0;width:100%;height:100%;display:none;justify-content:center;align-items:center;background:rgba(0,0,0,0.5);} 
 
-    .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-    }
+.auth-box{background:white;padding:2rem;border-radius:12px;width:300px;} 
+.auth-box input{width:100%;margin:6px 0;} 
 
-    .card h3 {
-      margin-bottom: 0.5rem;
-    }
-
-    .price {
-      color: var(--primary);
-      font-weight: bold;
-      margin: 0.5rem 0;
-    }
-
-    .amenities {
-      font-size: 0.9rem;
-      color: #6b7280;
-      margin-bottom: 1rem;
-    }
-
-    button {
-      padding: 0.6rem 1rem;
-      border: none;
-      background: var(--primary);
-      color: white;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      opacity: 0.9;
-    }
-
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2rem;
-      }
-    }
-  </style>
+.badge{display:inline-block;padding:4px 8px;border-radius:6px;font-size:12px;margin-top:5px;} 
+.available{background:#d1fae5;color:#065f46;} 
+.full{background:#fee2e2;color:#991b1b;} 
+</style>
 </head>
+
 <body>
 
 <header>
-  <h1>CampusNest</h1>
-  <p>Find affordable student housing near your campus</p>
+<div class="logo">CampusNest</div>
+<button onclick="openAuth()">Login</button>
 </header>
 
-<section class="search-bar">
-  <input type="text" id="searchInput" placeholder="Search by college or location">
-</section>
-
-<section class="filters">
-  <select id="priceFilter">
-    <option value="">All Prices</option>
-    <option value="5000">Below ₹5000</option>
-    <option value="10000">Below ₹10000</option>
-  </select>
-
-  <select id="typeFilter">
-    <option value="">All Types</option>
-    <option value="Single">Single Room</option>
-    <option value="Shared">Shared Room</option>
-  </select>
+<section class="hero">
+<h2>Find Verified PGs & Hostels in Pune</h2>
+<input type="text" id="search" placeholder="Search by college (COEP, MIT-WPU...)">
 </section>
 
 <section class="grid" id="listings"></section>
 
+<div class="auth" id="authBox">
+<div class="auth-box">
+<h3>Login / Signup</h3>
+<input type="email" id="email" placeholder="Email">
+<input type="password" id="password" placeholder="Password">
+<button onclick="signup()">Sign Up</button>
+<button onclick="login()">Login</button>
+<button onclick="googleLogin()">Google Login</button>
+<p id="error" style="color:red;font-size:12px;"></p>
+</div>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js"></script>
+
 <script>
-  const properties = [
-    { name: "GreenView PG", price: 4500, distance: "0.5 km", type: "Shared", amenities: "WiFi, Food" },
-    { name: "Urban Stay Hostel", price: 8000, distance: "1 km", type: "Single", amenities: "WiFi, AC" },
-    { name: "Campus Comfort", price: 6000, distance: "0.8 km", type: "Shared", amenities: "Food, Laundry" },
-    { name: "Elite Rooms", price: 12000, distance: "1.5 km", type: "Single", amenities: "WiFi, AC, Food" },
-    { name: "Budget Nest", price: 4000, distance: "1.2 km", type: "Shared", amenities: "WiFi" },
-    { name: "Scholars Hub", price: 9000, distance: "0.7 km", type: "Single", amenities: "WiFi, Food, AC" }
-  ];
+const firebaseConfig = {
+  apiKey: "AIzaSyAP0jIeaCY7jdcmwfJpPyR1EjXFqSV3bVs",
+  authDomain: "campusnest-26b05.firebaseapp.com",
+  projectId: "campusnest-26b05"
+};
 
-  const container = document.getElementById("listings");
+firebase.initializeApp(firebaseConfig);
+const auth = firebase.auth();
+const db = firebase.firestore();
 
-  function renderListings(data) {
-    container.innerHTML = "";
-    data.forEach(p => {
-      const card = document.createElement("div");
-      card.className = "card";
-      card.innerHTML = `
-        <h3>${p.name}</h3>
-        <p class="price">₹${p.price}/month</p>
-        <p>${p.distance} from college</p>
-        <p class="amenities">${p.amenities}</p>
-        <button onclick="contact()">Contact</button>
-      `;
-      container.appendChild(card);
-    });
-  }
+function openAuth(){document.getElementById('authBox').style.display='flex';}
 
-  function contact() {
-    alert("Contact coming soon");
-  }
+function signup(){
+if(password.value.length < 6){error.innerText = "Password must be at least 6 characters"; return;}
 
-  function applyFilters() {
-    const search = document.getElementById("searchInput").value.toLowerCase();
-    const price = document.getElementById("priceFilter").value;
-    const type = document.getElementById("typeFilter").value;
+auth.createUserWithEmailAndPassword(email.value,password.value)
+.then(()=>alert('Account created'))
+.catch(e=>error.innerText=e.message);
+}
 
-    let filtered = properties.filter(p => {
-      return (
-        p.name.toLowerCase().includes(search) &&
-        (price === "" || p.price <= price) &&
-        (type === "" || p.type === type)
-      );
-    });
+function login(){
+auth.signInWithEmailAndPassword(email.value,password.value)
+.then(()=>alert('Logged in'))
+.catch(e=>error.innerText=e.message);
+}
 
-    renderListings(filtered);
-  }
+function googleLogin(){
+const provider = new firebase.auth.GoogleAuthProvider();
+auth.signInWithPopup(provider);
+}
 
-  document.getElementById("searchInput").addEventListener("input", applyFilters);
-  document.getElementById("priceFilter").addEventListener("change", applyFilters);
-  document.getElementById("typeFilter").addEventListener("change", applyFilters);
+function loadListings(){
+db.collection("properties").onSnapshot(snapshot=>{
+let html="";
 
-  renderListings(properties);
+snapshot.forEach(doc=>{
+const p = doc.data();
+
+html += `
+<div class='card'>
+<h3>${p.name}</h3>
+<p><b>₹${p.price}/month</b></p>
+<p>${p.distance} from ${p.college}</p>
+<p class='rating'>⭐ ${p.rating}</p>
+
+<div>
+${p.amenities.map(a=>`<span class='tag'>${a}</span>`).join('')}
+</div>
+
+<div class='badge ${p.available ? 'available' : 'full'}'>
+${p.available ? 'Available' : 'Full'}
+</div>
+
+<button onclick='alert("Contact coming soon")'>Contact</button>
+</div>`;
+});
+
+document.getElementById('listings').innerHTML = html;
+});
+}
+
+loadListings();
 </script>
 
 </body>
